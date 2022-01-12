@@ -69,21 +69,23 @@ PlayerAction.TagTeam = {
 
 		tagged = nil
 
-		--addition
+		--addition, added fixed cooldown time that begins after effect duration ends
 		local end_cd_time = timer:time() + (5 * base_values.duration)
 		local function on_throwable()
 			end_cd_time = timer:time()
 		end
+		--register an event listener in playerstandard, listens to throwable keybind
+		--will reduce fixed cooldown time to now
 		PlayerStandard.register_listener(on_throwable_key, {
 			"on_throwable"
 		}, on_throwable)
 
-		--addition
+		--addition, wait till fixed cooldown time ends
 		while (alive(owner) and timer:time() < end_cd_time) do
 			coroutine.yield()
 		end
 
-		--addition
+		--addition, unregister the event listener
 		PlayerStandard.unregister_listener(on_throwable_key)
 
 		while not managers.player:got_max_grenades() do
