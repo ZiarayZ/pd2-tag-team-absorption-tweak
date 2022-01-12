@@ -1,0 +1,20 @@
+{
+    "name": "Tag Team Absorption Buff",
+    "description": "Tag Team's absorption has been buffed to last 60 (default cooldown) seconds after an ally has been untagged.",
+    "author": "ZiarayZ",
+    "contact": "ZiarayZ#0095 via discord",
+    "version": 1,
+	"color": "40 40 255",
+	"blt_version": 2,
+	"image": "mod.png",
+    "hooks": [
+        {
+            "hook_id": "lib/player_actions/skills/playeractiontagteam",
+            "script_path": "Hooks/playeractiontagteam.lua"
+        },
+        {
+            "hook_id": "lib/units/beings/player/states/playerstandard",
+            "script_path": "Hooks/playerstandard.lua"
+        }
+    ]
+}
